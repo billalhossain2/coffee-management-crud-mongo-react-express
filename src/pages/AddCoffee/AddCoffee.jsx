@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Footer from "../../components/Footer/Footer";
 import BackHome from "../../components/BackHome";
 import TopHeader from "../../components/TopHeader/TopHeader";
+import Swal from "sweetalert2";
 const AddCoffee = () => {
   const [coffee, setCoffee] = useState({name:'', supplier: '', category:'', photo:'', chef:'', taste:'', details:''})
   const handleChange = (e)=>{
@@ -22,7 +23,13 @@ const AddCoffee = () => {
     .then(res => res.json())
     .then(result => {
       if(result.acknowledged){
-      alert("Successfully added")
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Your product has been added!',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }
     })
     .catch(error => console.log(error.message))
