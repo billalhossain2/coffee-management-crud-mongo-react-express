@@ -1,9 +1,22 @@
 import TopHeader from "../../components/TopHeader/TopHeader"
 import BackHome from "../../components/BackHome"
 import Footer from "../../components/Footer/Footer"
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams } from "react-router-dom"
 
 const Edit = () => {
+  const {coffeeId} = useParams();
+
+  const [coffee, setCoffee] = useState(null);
+  const {name, supplier, category, photo, chef, taste, details} = coffee || {};
+
+  useEffect(()=>{
+    fetch(`https://coffee-management-mongo-server.vercel.app/coffee/${coffeeId}`)
+  .then(res => res.json())
+  .then(data => setCoffee(data))
+  .catch(error => console.log(error.message))
+  }, [])
+
   return (
     <div>
         <TopHeader></TopHeader>
@@ -30,6 +43,7 @@ const Edit = () => {
                       type="text"
                       id="name"
                       placeholder="Enter coffee name"
+                      defaultValue={name}
                     />
                   </div>
                   <div className="text-[20px] mb-4">
@@ -41,6 +55,7 @@ const Edit = () => {
                       type="text"
                       id="supplier"
                       placeholder="Enter coffee supplier"
+                      defaultValue={supplier}
                     />
                   </div>
                   <div className="text-[20px] mb-4">
@@ -52,6 +67,7 @@ const Edit = () => {
                       type="text"
                       id="category"
                       placeholder="Enter coffee category"
+                      defaultValue={category}
                     />
                   </div>
                   <div className="text-[20px]">
@@ -63,6 +79,7 @@ const Edit = () => {
                       type="text"
                       id="photo"
                       placeholder="Enter photo URL"
+                      defaultValue={photo}
                     />
                   </div>
                 </div>
@@ -76,6 +93,7 @@ const Edit = () => {
                       type="text"
                       id="chef"
                       placeholder="Enter coffee chef"
+                      defaultValue={chef}
                     />
                   </div>
                   <div className="text-[20px] mb-4">
@@ -87,6 +105,7 @@ const Edit = () => {
                       type="text"
                       id="supplier"
                       placeholder="Enter coffee taste"
+                      defaultValue={taste}
                     />
                   </div>
                   <div className="text-[20px] mb-4">
@@ -98,6 +117,7 @@ const Edit = () => {
                       type="text"
                       id="details"
                       placeholder="Enter coffee details"
+                      defaultValue={details}
                     />
                   </div>
                 </div>

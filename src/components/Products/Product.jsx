@@ -55,7 +55,7 @@ const Product = ({ coffee, coffees, setCoffees }) => {
         <Link to={`/details/${_id}`}>
           <i className="fa-regular fa-eye bg-[#D2B48C] cursor-pointer rounded-[5px] p-3"></i>
         </Link>
-        <Link to="/edit">
+        <Link to={`/edit/${_id}`}>
           <i className="fa-solid fa-pen bg-[#3C393B] cursor-pointer rounded-[5px] p-3"></i>
         </Link>
         <i
