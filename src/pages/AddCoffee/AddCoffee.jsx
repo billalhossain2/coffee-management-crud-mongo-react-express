@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import useTitle from "../../Hooks/useTitle";
 const AddCoffee = () => {
   useTitle("Add Coffee - Coffee Management")
-  const [coffee, setCoffee] = useState({name:'', supplier: '', category:'', photo:'', chef:'', taste:'', details:''})
+  const [coffee, setCoffee] = useState({name:'', supplier: '', category:'', photo:'', chef:'', taste:'', price:'', details:''})
   const handleChange = (e)=>{
     const name = e.target.name;
     setCoffee({...coffee, [name]:e.target.value})
@@ -135,6 +135,19 @@ const AddCoffee = () => {
                       id="supplier"
                       placeholder="Enter coffee taste"
                       name="taste"
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="text-[20px] mb-4">
+                    <label className="block" htmlFor="taste">
+                      Price
+                    </label>
+                    <input
+                      className="p-2 rounded-lg w-[100%] outline-none"
+                      type="number"
+                      id="price"
+                      placeholder="Enter coffee price"
+                      name="price"
                       onChange={handleChange}
                     />
                   </div>

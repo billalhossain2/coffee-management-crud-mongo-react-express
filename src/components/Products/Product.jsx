@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import productImg from "../../assets/images/coffee-4.png";
 import Swal from "sweetalert2";
 const Product = ({ coffee, coffees, setCoffees }) => {
-  const { _id, name, chef } = coffee;
+  const { _id, name, chef, price } = coffee || {};
+  console.log(price)
 
   const handleDeleteCoffee = (coffeeId) => {
     Swal.fire({
@@ -48,7 +49,7 @@ const Product = ({ coffee, coffees, setCoffees }) => {
           <b>Chef:</b> <span>{chef}</span>
         </p>
         <p>
-          <b>Price:</b> <span>{""} Taka</span>
+          <b>Price:</b> <span>{price} Taka</span>
         </p>
       </div>
       <div className="actions flex lg:flex-col md:flex-col flex-row gap-3 text-white">

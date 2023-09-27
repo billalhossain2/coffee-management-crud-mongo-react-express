@@ -11,7 +11,7 @@ const Edit = () => {
   const {coffeeId} = useParams();
 
   const [coffee, setCoffee] = useState(null);
-  const {name, supplier, category, photo, chef, taste, details} = coffee || {};
+  const {name, supplier, category, photo, chef, taste, price, details} = coffee || {};
 
   useEffect(()=>{
     fetch(`https://coffee-management-mongo-server.vercel.app/coffee/${coffeeId}`)
@@ -29,9 +29,10 @@ const Edit = () => {
     const photo = form.photo.value;
     const chef = form.chef.value;
     const taste = form.taste.value;
+    const price = form.price.value;
     const details = form.details.value;
     
-    const updateCoffee = {name:title, supplier, category, photo, chef, taste, details}
+    const updateCoffee = {name:title, supplier, category, photo, chef, taste, price, details}
 
     //update data to DB
     fetch(`https://coffee-management-mongo-server.vercel.app/coffee/${coffeeId}`, {
@@ -150,6 +151,19 @@ const Edit = () => {
                       placeholder="Enter coffee taste"
                       name="taste"
                       defaultValue={taste}
+                    />
+                  </div>
+                  <div className="text-[20px] mb-4">
+                    <label className="block" htmlFor="taste">
+                      Price
+                    </label>
+                    <input
+                      className="p-2 rounded-lg w-[100%] outline-none"
+                      type="number"
+                      id="price"
+                      placeholder="Enter coffee price"
+                      name="price"
+                      defaultValue={price}
                     />
                   </div>
                   <div className="text-[20px] mb-4">
