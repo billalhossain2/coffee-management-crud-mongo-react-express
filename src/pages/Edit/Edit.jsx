@@ -4,8 +4,10 @@ import Footer from "../../components/Footer/Footer"
 import React, { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom"
 import Swal from "sweetalert2"
+import useTitle from "../../Hooks/useTitle"
 
 const Edit = () => {
+  useTitle("Update Coffee - Coffee Management")
   const {coffeeId} = useParams();
 
   const [coffee, setCoffee] = useState(null);

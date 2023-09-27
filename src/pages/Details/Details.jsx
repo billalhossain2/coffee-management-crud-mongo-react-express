@@ -4,7 +4,9 @@ import BackHome from "../../components/BackHome"
 import coffeeImg from "../../assets/images/coffee-4.png";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
+import useTitle from "../../Hooks/useTitle";
 const Details = () => {
+  useTitle("Coffee Details - Coffee Management")
   const {coffeeId} = useParams();
   const [coffee, setCoffee] = useState(null)
   const {name, chef, supplier, taste, category, details} = coffee || {};

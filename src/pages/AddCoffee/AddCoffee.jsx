@@ -3,7 +3,9 @@ import Footer from "../../components/Footer/Footer";
 import BackHome from "../../components/BackHome";
 import TopHeader from "../../components/TopHeader/TopHeader";
 import Swal from "sweetalert2";
+import useTitle from "../../Hooks/useTitle";
 const AddCoffee = () => {
+  useTitle("Add Coffee - Coffee Management")
   const [coffee, setCoffee] = useState({name:'', supplier: '', category:'', photo:'', chef:'', taste:'', details:''})
   const handleChange = (e)=>{
     const name = e.target.name;
