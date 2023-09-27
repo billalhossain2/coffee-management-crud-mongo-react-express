@@ -8,14 +8,14 @@ import Error from "../pages/Error/Error";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home></Home>
+    element: <Home></Home>,
   },
   {
     path: "/addCoffee",
     element: <AddCoffee></AddCoffee>,
   },
   {
-    path: "/details",
+    path: "/details/:coffeeId",
     element: <Details></Details>,
   },
   {
