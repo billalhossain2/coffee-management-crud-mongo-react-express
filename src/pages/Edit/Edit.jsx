@@ -3,6 +3,7 @@ import BackHome from "../../components/BackHome"
 import Footer from "../../components/Footer/Footer"
 import React, { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom"
+import Swal from "sweetalert2"
 
 const Edit = () => {
   const {coffeeId} = useParams();
@@ -17,6 +18,41 @@ const Edit = () => {
   .catch(error => console.log(error.message))
   }, [])
 
+  const handleSubmit = (e)=>{
+    e.preventDefault();
+    const form = e.target;
+    const title = form.title.value;
+    const supplier = form.coffeeSupplier.value;
+    const category = form.category.value;
+    const photo = form.photo.value;
+    const chef = form.chef.value;
+    const taste = form.taste.value;
+    const details = form.details.value;
+    
+    const updateCoffee = {name:title, supplier, category, photo, chef, taste, details}
+
+    //update data to DB
+    fetch(`https://coffee-management-mongo-server.vercel.app/coffee/${coffeeId}`, {
+      method:"PUT",
+      headers:{
+        'content-type':'application/json'
+      },
+      body:JSON.stringify(updateCoffee)
+    })
+    .then(res => res.json())
+    .then(result => {
+      if(result.acknowledged){
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Your product has been added!',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    })
+    .catch(error => console.log(error.message))
+  }
   return (
     <div>
         <TopHeader></TopHeader>
@@ -31,7 +67,7 @@ const Edit = () => {
             </p>
           </header>
           <main>
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-5">
                 <div>
                   <div className="text-[20px] mb-4">
@@ -43,6 +79,7 @@ const Edit = () => {
                       type="text"
                       id="name"
                       placeholder="Enter coffee name"
+                      name="title"
                       defaultValue={name}
                     />
                   </div>
@@ -55,6 +92,7 @@ const Edit = () => {
                       type="text"
                       id="supplier"
                       placeholder="Enter coffee supplier"
+                      name="coffeeSupplier"
                       defaultValue={supplier}
                     />
                   </div>
@@ -67,6 +105,7 @@ const Edit = () => {
                       type="text"
                       id="category"
                       placeholder="Enter coffee category"
+                      name="category"
                       defaultValue={category}
                     />
                   </div>
@@ -79,6 +118,7 @@ const Edit = () => {
                       type="text"
                       id="photo"
                       placeholder="Enter photo URL"
+                      name="photo"
                       defaultValue={photo}
                     />
                   </div>
@@ -93,6 +133,7 @@ const Edit = () => {
                       type="text"
                       id="chef"
                       placeholder="Enter coffee chef"
+                      name="chef"
                       defaultValue={chef}
                     />
                   </div>
@@ -105,6 +146,7 @@ const Edit = () => {
                       type="text"
                       id="supplier"
                       placeholder="Enter coffee taste"
+                      name="taste"
                       defaultValue={taste}
                     />
                   </div>
@@ -117,6 +159,7 @@ const Edit = () => {
                       type="text"
                       id="details"
                       placeholder="Enter coffee details"
+                      name="details"
                       defaultValue={details}
                     />
                   </div>
