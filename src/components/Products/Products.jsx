@@ -12,6 +12,7 @@ const Products = () => {
     })
     .catch(error => console.log(error.message))
   }, [])
+
   return (
     <div className='mb-32'>
         <div className='text-center mb-20 mt-32'>
@@ -24,7 +25,7 @@ const Products = () => {
         {/* products  */}
         <div className="grid lg:grid-cols-2 grid-cols-1 gap-5 max-w-[80%] mx-auto">
             {
-              coffees?.map(coffee => <Product key={coffee._id} coffee={coffee}></Product>)
+              coffees?.map(coffee => <Product key={coffee._id} coffee={coffee} coffees={coffees} setCoffees={setCoffees}></Product>)
             }
         </div>
     </div>
